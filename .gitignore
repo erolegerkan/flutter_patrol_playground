@@ -1,0 +1,41 @@
+# Flutter/Dart compile files
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+.melos_tool_logs/
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Pods/
+ios/Runner.xcworkspace/
+macos/Flutter/Flutter.podspec
+macos/Flutter/ephemeral/
+macos/Pods/
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
+web/.dart_tool/
+
+# Android
+android/.gradle/
+android/captures/
+android/gradle-wrapper.properties
+android/local.properties  
+android/.idea/
+
+# VSCode/IntelliJ settings
+.vscode/
+.idea/
+
+# Personal config
+*.iml
+*.swp
+
+# Env variables
+.env
+.env.*
+firebase_options.dart
+
+*.log
