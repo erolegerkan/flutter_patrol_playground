@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
-import 'package:patrol_test/core/common/custom_button.dart';
 import 'package:patrol_test/core/common/custom_text.dart';
 import 'package:patrol_test/core/services/contact_service.dart';
 
@@ -14,7 +13,9 @@ class ContactsScreen extends StatefulWidget {
 class _ContactsScreenState extends State<ContactsScreen> {
   bool isChallengeAccepted = false;
   List<Contact> contacts = [];
-  bool isContactsEmpty = false;
+  bool isContactsEmpty = true;
+  bool isPermissionGranted = false;
+  bool isButtonClicked = false;
 
   Widget _contactListsWidget() {
     return Expanded(
@@ -27,44 +28,74 @@ class _ContactsScreenState extends State<ContactsScreen> {
               border: Border.all(color: Colors.black),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: TextButton(
-              onPressed: () async {
-                contacts = await ContactService().getAllContacts();
-                if (contacts.isEmpty) {
-                  setState(() {
-                    isContactsEmpty = true;
-                  });
-                }
-              },
-              child: Text(
-                "Fetch all the contacts",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
+            child:
+                !isPermissionGranted
+                    ? TextButton(
+                      onPressed: () async {
+                        isPermissionGranted =
+                            await ContactService().getUserPermission();
+                        setState(() {
+                          isPermissionGranted;
+                        });
+                      },
+                      child: Text(
+                        "Give the permission",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                    : Text("Permission granted!"),
           ),
-          if (isContactsEmpty)
-            Center(
-              child: Text(
-                "No contacts found\nFirst add a new contact!",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+          if (isPermissionGranted)
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: TextButton(
+                onPressed: () async {
+                  contacts = await ContactService().getAllContacts();
+                  if (contacts.isNotEmpty) {
+                    setState(() {
+                      isContactsEmpty = false;
+                      isButtonClicked = true;
+                    });
+                  }
+                },
+                child: Text(
+                  "Fetch the contacts",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
-          if (!isContactsEmpty)
+          if (isButtonClicked)
             Expanded(
-              child: ListView.builder(
-                itemCount: contacts.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(contacts[index].name.first),
-                    subtitle: Text(contacts[index].phones.first.number),
-                  );
-                },
-              ),
+              child:
+                  !isContactsEmpty
+                      ? ListView.builder(
+                        itemCount: contacts.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(contacts[index].name.first),
+                            subtitle: Text(contacts[index].phones.first.number),
+                          );
+                        },
+                      )
+                      : Text(
+                        "No contacts found\nFirst add a new contact!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
             ),
         ],
       ),
