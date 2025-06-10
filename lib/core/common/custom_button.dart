@@ -14,7 +14,7 @@ class CustomButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextButton(
-        onPressed: onPressed != null ? () => onPressed : () {},
+        onPressed: onPressed != null ? () => onPressed! : () {},
         child: Text(
           buttonText,
           style: TextStyle(

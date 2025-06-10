@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             const SizedBox(height: 20),
             Text(
-              "Let\'s start the tour and learn Patrol",
+              "Let's start the tour and learn Patrol",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   !isButtonClicked
                       ? "First click the above button"
-                      : "Let\'s start the tour!",
+                      : "Let's start the tour!",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),

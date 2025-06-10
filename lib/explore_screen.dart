@@ -37,7 +37,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             child: TextField(
               controller: nameController,
               decoration: InputDecoration(
-                hintText: "What is our friend\'s name?",
+                hintText: "What is our friend's name?",
                 border: OutlineInputBorder(),
               ),
             ),

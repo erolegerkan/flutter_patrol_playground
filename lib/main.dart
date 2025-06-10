@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:patrol_test/auth_screen.dart';
+import 'package:patrol_test/contacts_screen.dart';
 import 'package:patrol_test/explore_screen.dart';
+import 'package:patrol_test/finish_screen.dart';
 import 'package:patrol_test/home_screen.dart';
 import 'package:patrol_test/last_screen.dart';
 import 'package:patrol_test/scroll_screen.dart';
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         "/explore" : (context) => ExploreScreen(),
         "/scroll" : (context) => ScrollScreen(),
         "/last" : (context) => LastScreen(),
+        "/contacts" : (context) => ContactsScreen(),
+        "/finish" : (context) => FinishScreen(),
       },
       initialRoute: "/",
     );
