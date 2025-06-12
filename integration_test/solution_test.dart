@@ -25,9 +25,9 @@ void main() {
       await Future.delayed(Duration(seconds: 1));
       await $(TextButton).at(2).tap();
       await Future.delayed(Duration(seconds: 1));
-      await $("Finally, you found me.\nClick here!").scrollTo(
-        scrollDirection: AxisDirection.down,
-      );
+      await $(
+        "Finally, you found me.\nClick here!",
+      ).scrollTo(scrollDirection: AxisDirection.down);
       await $(Container).$(Row).$("Finally, you found me.\nClick here!").tap();
       await $(AlertDialog).$("Yes").tap();
       await Future.delayed(Duration(seconds: 1));
@@ -41,13 +41,14 @@ void main() {
       await Future.delayed(Duration(seconds: 1));
       await $(TextButton).at(1).tap();
       await Future.delayed(Duration(seconds: 1));
-      if(await $.native.isPermissionDialogVisible()){
+      if (await $.native.isPermissionDialogVisible()) {
         await $.native.grantPermissionWhenInUse();
       }
       await Future.delayed(Duration(seconds: 1));
       await $("Fetch the contacts").tap();
       await $(Container).$(Icons.flutter_dash).tap();
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 1));
+      $(#finishScreenText).exists;
     },
   );
 }

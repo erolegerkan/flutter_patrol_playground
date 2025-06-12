@@ -39,3 +39,4 @@ android/.idea/
 firebase_options.dart
 
 *.log
+devtools_options.yaml

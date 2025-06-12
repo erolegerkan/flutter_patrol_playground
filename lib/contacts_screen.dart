@@ -105,6 +105,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
                       isContactsEmpty = false;
                       isButtonClicked = true;
                     });
+                  }else{
+                    setState(() {
+                      isButtonClicked = true;
+                    });
                   }
                 },
                 child: Text(

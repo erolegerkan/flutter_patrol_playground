@@ -11,7 +11,7 @@ class FinishScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 16,
           children: [
-            Icon(Icons.flutter_dash, size: 200, color: Colors.blue),
+            Icon(key: const Key("finishScreenText") ,Icons.flutter_dash, size: 200, color: Colors.blue),
             Text("Well done, you finished the challenge!",textAlign: TextAlign.center,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
             Text("See you soon, my friend!",textAlign: TextAlign.center,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
           ],
