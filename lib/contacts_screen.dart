@@ -17,6 +17,49 @@ class _ContactsScreenState extends State<ContactsScreen> {
   bool isPermissionGranted = false;
   bool isButtonClicked = false;
 
+  Widget _contactItemWidget(String contactTitle, String contactNumber) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, "/finish");
+      },
+      child: Container(
+        height: 100,
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          children: [
+            Column(
+              children: [
+                Text(
+                  contactTitle,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  contactNumber,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            Icon(Icons.flutter_dash, size: 50, color: Colors.white),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _contactListsWidget() {
     return Expanded(
       child: Column(
@@ -81,9 +124,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
                       ? ListView.builder(
                         itemCount: contacts.length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(contacts[index].name.first),
-                            subtitle: Text(contacts[index].phones.first.number),
+                          return _contactItemWidget(
+                            contacts[index].name.first,
+                            contacts[index].phones.first.number,
                           );
                         },
                       )
